@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+let generateMarkdown= require('./02-Challenge/Develop/utils/generateMarkdown')
 // var link = document.createElement('link');
 // link.rel = 'stylesheet';
 // link.type = 'text/css';
@@ -41,7 +42,7 @@ inquirer
       type: 'list',
       name: 'license',
       message: 'Declare license type:',
-      choices: ['MIT','Apache','Boost','Other']
+      choices: ['MIT','Apache','BSD']
       //HOW TO ADD A BADGE?
     },
     {
@@ -68,67 +69,19 @@ inquirer
     }
   ])
   .then((answers)=>{
-    var fileName = `${answers.projectTitle}.json`
-    fs.writeFile(`${answers.readme}.html`,`<h1>${answers.projectTitle}</h1>`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.description}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<h1>${answers.description}</h1>`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.tableOfContents}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<a>${answers.tableOfContents}</a>`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.installation}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<p>${answers.installation}</p>`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.usage}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<p>${answers.usage}</p>`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.license}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<p>${answers.license}</p>`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.contributing}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<p>${answers.contributing}</p>`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.tests}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<p>${answers.tests}</p>`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.github}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<h2>${answers.github}</h2>\n`,(err)=>{
-        if(err){
-            throw err
-        }
-        let fileName = `${answers.email}.json` 
-        fs.appendFile(`${answers.readme}.html`,`<h2>${answers.email}</h2>\n`,(err)=>{
-        if(err){
-            throw err
-        }
-})
-})
-}) 
-})
-})
-})
-})
-})
-})
-})
-})
+    var stringData = generateMarkdown(answers)
+    saveReadMe (stringData)
+    console.log(stringData);
+  })
+
+
+  function saveReadMe(data){
+    fs.appendFileSync("./output/README.md", data, (err)=>{
+      if (err) console.log(err);
+      console.log("readme generated successfully!")
+    })
+  }
+
 
 // .then((answers)=>{
 //     let fileName = `${answers.description}.json` 
