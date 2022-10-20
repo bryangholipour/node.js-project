@@ -2,11 +2,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 let generateMarkdown= require('./02-Challenge/Develop/utils/generateMarkdown')
-// var link = document.createElement('link');
-// link.rel = 'stylesheet';
-// link.type = 'text/css';
-// link.href = 'style.css';
-
 
 // TODO: Create an array of questions for user input
 const questions = [];
@@ -23,10 +18,9 @@ inquirer
       message: 'Add a description to your README:',
     },
     {
-      type: 'checkbox',
+      type: 'confirm',
       name: 'tableOfContents',
-      message: 'Check all items you need for your table of contents:',
-      choices:['title','description','table of contents','installation','usage','license','contributing','tests','contact']
+      message: 'Would you like a table of contents?',
       //MUST BE IN LINKS <a> AND NAVIGATE TO THE CORRESPONDING SECTION OF THE README
     },
     {
@@ -43,7 +37,7 @@ inquirer
       type: 'list',
       name: 'license',
       message: 'Declare license type:',
-      choices: ['MIT','Apache','BSD']
+      choices: ['MIT','Apache','BSD', "none"]
       //HOW TO ADD A BADGE?
     },
     {
@@ -84,7 +78,7 @@ inquirer
   }
 
 
-// .then((answers)=>{
+  // .then((answers)=>{
 //     let fileName = `${answers.description}.json` 
 //     fs.appendFile(`${answers.description}.html`,`<h1>${answers.description}</h1>`,(err)=>{
 //         if(err){
@@ -94,7 +88,6 @@ inquirer
     
 // })
 
-
 // // TODO: Create a function to write README file
 // function writeToFile(fileName, data) {}
 
@@ -103,10 +96,6 @@ inquirer
 
 // // Function call to initialize app
 // init();
-
-
-
-
 
 //Elements of a README file 
 
