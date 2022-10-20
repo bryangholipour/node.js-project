@@ -23,9 +23,10 @@ inquirer
       message: 'Add a description to your README:',
     },
     {
-      type: 'input',
+      type: 'checkbox',
       name: 'tableOfContents',
-      message: 'Add a table of contents to your README:',
+      message: 'Check all items you need for your table of contents:',
+      choices:['title','description','table of contents','installation','usage','license','contributing','tests','contact']
       //MUST BE IN LINKS <a> AND NAVIGATE TO THE CORRESPONDING SECTION OF THE README
     },
     {
